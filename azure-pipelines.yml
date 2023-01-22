@@ -18,5 +18,6 @@ steps:
   inputs:
     command: 'plan'
     runAzLogin: true
+    commandOptions: '-var-file myvalues.tfvars'
     allowTelemetryCollection: true
 
