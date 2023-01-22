@@ -16,8 +16,5 @@ steps:
     allowTelemetryCollection: true
 - task: TerraformCLI@0
   inputs:
-    command: 'plan'
-    runAzLogin: true
-    commandOptions: '-var-file myvalues.tfvars'
+    command: 'validate'
     allowTelemetryCollection: true
-
