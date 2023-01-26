@@ -19,6 +19,10 @@ steps:
     terraformVersion: 'latest'
 - task: TerraformCLI@0
   inputs:
+    command: 'init'
+    allowTelemetryCollection: true
+- task: TerraformCLI@0
+  inputs:
     command: 'plan'
     environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
     commandOptions: '-var-file ${{ parameters.VARSFILE }}'
