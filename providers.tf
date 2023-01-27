@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "terraform-rg"  # Resourcegroupname
-    storage_account_name = "dvsterraformiac" # Storage account name 
-    container_name       = "statefilebackup" # Container/blob name
-    key                  = "default.tfstate" # state file name 
+    resource_group_name  = "terraform-rg"
+    storage_account_name = "dvsterraformiac"
+    container_name       = "statefilebackup"
+    key                  = "default.tfstate"
   }
 
 }
