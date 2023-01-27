@@ -22,6 +22,8 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'init'
+    backendType: 'azurerm'
+    backendServiceArm: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
     allowTelemetryCollection: true
 - task: TerraformCLI@0
   inputs:
