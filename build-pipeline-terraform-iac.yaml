@@ -36,7 +36,23 @@ steps:
     backendServiceArm: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
     allowTelemetryCollection: true
 
-- ${{ if eq(parameters.TFACTION, 'destroy') }}:
+- ${{ if eq(parameters.TFACTION, 'plan') }}:
+  - task: TerraformCLI@0
+    inputs:
+      command: 'plan'
+      environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
+      commandOptions: '-var-file ${{ parameters.TFVARS }}'
+      allowTelemetryCollection: true
+
+- ${{ elseif eq(parameters.TFACTION, 'apply') }}: 
+  - task: TerraformCLI@0
+    inputs:
+      command: 'apply'
+      environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
+      commandOptions: '-var-file ${{ parameters.TFVARS }}'
+      allowTelemetryCollection: true
+
+- ${{ elseif eq(parameters.TFACTION, 'destroy') }}: # true
   - task: TerraformCLI@0
     inputs:
       command: 'destroy'
