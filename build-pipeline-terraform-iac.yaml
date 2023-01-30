@@ -35,9 +35,8 @@ steps:
     backendType: 'azurerm'
     backendServiceArm: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
     allowTelemetryCollection: true
-
 - ${{ if eq(parameters.TFACTION, 'plan') }}:
-  - task: Terraform Plan
+  - task: TerraformCLI@0
     inputs:
       command: 'plan'
       environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
@@ -45,7 +44,7 @@ steps:
       allowTelemetryCollection: true
 
 - ${{ elseif eq(parameters.TFACTION, 'apply') }}: 
-  - task: Terraform Apply 
+  - task: TerraformCLI@0
     inputs:
       command: 'apply'
       environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
@@ -53,12 +52,13 @@ steps:
       allowTelemetryCollection: true
 
 - ${{ elseif eq(parameters.TFACTION, 'destroy') }}: # true
-  - task: Terraform Destory
+  - task: TerraformCLI@0
     inputs:
       command: 'destroy'
       environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
       commandOptions: '-var-file ${{ parameters.TFVARS }}'
       allowTelemetryCollection: true
+
 
 
 
