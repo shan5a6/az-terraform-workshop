@@ -47,7 +47,7 @@ steps:
   inputs:
     command: 'workspace'
     workspaceSubCommand: 'new'
-    commandOptions: '${{ parameters.TFWORKSPACE }}'
+    workspaceName: '${{ parameters.TFWORKSPACE }}'
     allowTelemetryCollection: true
     skipExistingWorkspace: true
 
