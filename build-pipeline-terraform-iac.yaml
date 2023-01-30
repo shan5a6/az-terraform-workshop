@@ -36,7 +36,7 @@ steps:
     allowTelemetryCollection: true
 - task: TerraformCLI@0
   inputs:
-    command: '${{ TFACTION }}'
+    command: 'plan'
     environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
     commandOptions: '-var-file ${{ parameters.TFVARS }}'
     allowTelemetryCollection: true
