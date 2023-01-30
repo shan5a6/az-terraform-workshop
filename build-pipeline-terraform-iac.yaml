@@ -37,7 +37,7 @@ steps:
     allowTelemetryCollection: true
 
 - ${{ if eq(parameters.TFACTION, 'plan') }}:
-  - task: TerraformCLI@0
+  - task: Terraform Plan
     inputs:
       command: 'plan'
       environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
@@ -45,7 +45,7 @@ steps:
       allowTelemetryCollection: true
 
 - ${{ elseif eq(parameters.TFACTION, 'apply') }}: 
-  - task: TerraformCLI@0
+  - task: Terraform Apply 
     inputs:
       command: 'apply'
       environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
@@ -53,11 +53,12 @@ steps:
       allowTelemetryCollection: true
 
 - ${{ elseif eq(parameters.TFACTION, 'destroy') }}: # true
-  - task: TerraformCLI@0
+  - task: Terraform Destory
     inputs:
       command: 'destroy'
       environmentServiceName: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
       commandOptions: '-var-file ${{ parameters.TFVARS }}'
       allowTelemetryCollection: true
+
 
 
