@@ -8,7 +8,6 @@ parameters:
     - dev.tfvars
     - pt.tfvars
     - prod.tfvars
-    
 - name: TFACTION
   displayName: Terraform action to perform
   type: string
@@ -17,6 +16,13 @@ parameters:
     - plan  
     - apply
     - destroy
+- name: TFWORKSPACE
+  displayName: Terraform workspace to consume
+  type: string
+  default: dev
+  values:
+    - dev  
+    - prod
 
 trigger:
 - none
@@ -35,6 +41,16 @@ steps:
     backendType: 'azurerm'
     backendServiceArm: 'Pay-As-You-Go(69fc0447-bb32-4449-bce8-002d5b9938c9)'
     allowTelemetryCollection: true
+
+- task: TerraformCLI@0
+  displayName: Terraform Workspace creation if not exists
+  inputs:
+    command: 'workspace'
+    workspaceSubCommand: 'new'
+    commandOptions: '${{ parameters.TFWORKSPACE }}'
+    allowTelemetryCollection: true
+    skipExistingWorkspace: true
+
 - ${{ if eq(parameters.TFACTION, 'plan') }}:
   - task: TerraformCLI@0
     inputs:
